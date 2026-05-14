@@ -15,7 +15,7 @@ The system runs on 89 days of synthetic data calibrated against real distributio
 ## Quick start
 
 ```bash
-git clone https://github.com/SyedSobanShahid/warehouse-agent-system.git
+git clone nhouxiong/Agentic-Warehouse-AI.git
 cd warehouse-agent-system
 docker compose up
 ```
