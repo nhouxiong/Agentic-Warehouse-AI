@@ -1,0 +1,57 @@
+{
+  "model_name": "wait_time",
+  "model_type": "random_forest",
+  "features": [
+    "hour",
+    "day_of_week",
+    "is_morning",
+    "tier_encoded",
+    "on_time_rate",
+    "avg_delay_mins",
+    "size_encoded",
+    "is_hot",
+    "is_expedited",
+    "actual_pallet_count",
+    "dock_occupancy",
+    "hour_sin",
+    "hour_cos"
+  ],
+  "training_rows": 2665,
+  "test_rows": 667,
+  "results": {
+    "linear_regression": {
+      "mae": 10.59,
+      "rmse": 15.13,
+      "r2": 0.037
+    },
+    "random_forest": {
+      "mae": 10.64,
+      "rmse": 15.12,
+      "r2": 0.038
+    },
+    "xgboost": {
+      "mae": 11.58,
+      "rmse": 16.41,
+      "r2": -0.132
+    }
+  },
+  "baseline": {
+    "mean": 15.0,
+    "median": 10.0
+  },
+  "feature_importance": {
+    "actual_pallet_count": 0.2642,
+    "on_time_rate": 0.1463,
+    "avg_delay_mins": 0.1161,
+    "dock_occupancy": 0.1063,
+    "hour": 0.1049,
+    "day_of_week": 0.098,
+    "hour_cos": 0.0514,
+    "hour_sin": 0.0472,
+    "is_expedited": 0.0253,
+    "is_morning": 0.0147,
+    "size_encoded": 0.0139,
+    "is_hot": 0.0074,
+    "tier_encoded": 0.0043
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "model_name": "unload_duration",
+  "model_type": "random_forest",
+  "features": [
+    "actual_pallet_count",
+    "log_pallets",
+    "tier_encoded",
+    "on_time_rate",
+    "dock_door",
+    "zone_encoded",
+    "hour",
+    "day_of_week"
+  ],
+  "training_rows": 2665,
+  "test_rows": 667,
+  "results": {
+    "linear_regression": {
+      "mae": 10.86,
+      "rmse": 14.38,
+      "r2": 0.518
+    },
+    "random_forest": {
+      "mae": 10.75,
+      "rmse": 13.99,
+      "r2": 0.544
+    },
+    "xgboost": {
+      "mae": 11.55,
+      "rmse": 15.29,
+      "r2": 0.455
+    }
+  },
+  "baseline": {
+    "mean": 48.5,
+    "median": 44.0
+  },
+  "feature_importance": {
+    "actual_pallet_count": 0.443,
+    "log_pallets": 0.4101,
+    "on_time_rate": 0.0401,
+    "hour": 0.0335,
+    "dock_door": 0.0315,
+    "day_of_week": 0.0197,
+    "zone_encoded": 0.0193,
+    "tier_encoded": 0.0027
+  }
+}

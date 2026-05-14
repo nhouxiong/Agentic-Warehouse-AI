@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Warehouse Agent System | Process Storyline</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f1a2e;
+    --slate: #1e2d47;
+    --teal: #0d8a6f;
+    --teal-light: #11b892;
+    --orange: #e8740c;
+    --orange-light: #ffa94d;
+    --red: #d44;
+    --bg: #fafbfd;
+    --card: #ffffff;
+    --muted: #8896a8;
+    --text: #2c3e56;
+    --border: #e4e9f0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--slate) 100%);
+    padding: 56px 40px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60%; left: -20%;
+    width: 140%; height: 200%;
+    background: radial-gradient(ellipse at 30% 50%, rgba(13,138,111,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 30%, rgba(232,116,12,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .header h1 {
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.5px;
+    position: relative;
+  }
+  .header p {
+    color: rgba(255,255,255,0.6);
+    font-size: 1.1rem;
+    margin-top: 10px;
+    position: relative;
+  }
+  .header .badge {
+    display: inline-block;
+    background: rgba(13,138,111,0.25);
+    border: 1px solid rgba(13,138,111,0.4);
+    color: var(--teal-light);
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  /* ── CONTAINER ── */
+  .container {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    position: relative;
+    margin-top: 48px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 36px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--teal), var(--orange), var(--teal));
+    border-radius: 3px;
+  }
+
+  /* ── PHASE LABEL ── */
+  .phase-label {
+    position: relative;
+    margin: 48px 0 24px 0;
+    padding-left: 88px;
+  }
+  .phase-label .dot {
+    position: absolute;
+    left: 24px;
+    top: 4px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--navy);
+    border: 3px solid var(--teal);
+    z-index: 2;
+  }
+  .phase-label h2 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 2px;
+  }
+  .phase-label h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  /* ── STEP CARD ── */
+  .step {
+    position: relative;
+    margin: 0 0 20px 88px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .step:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+  }
+  .step::before {
+    content: '';
+    position: absolute;
+    left: -52px;
+    top: 28px;
+    width: 40px;
+    height: 2px;
+    background: var(--border);
+  }
+  .step::after {
+    content: '';
+    position: absolute;
+    left: -56px;
+    top: 22px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--card);
+    border: 3px solid var(--teal);
+    z-index: 2;
+  }
+
+  .step .step-num {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    background: var(--teal);
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+  }
+  .step h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .step .desc {
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.65;
+  }
+  .step .analogy {
+    margin-top: 12px;
+    padding: 10px 14px;
+    background: #fef8f0;
+    border-left: 3px solid var(--orange);
+    border-radius: 0 8px 8px 0;
+    font-size: 0.88rem;
+    color: #7a5a2e;
+  }
+  .step .analogy::before {
+    content: '💡 ';
+  }
+  .step .metric {
+    display: block;
+    margin-top: 10px;
+    padding: 8px 14px;
+    background: #eef8f5;
+    border: 1px solid #c4e8dd;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--teal);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  /* ── HANDOFF ── */
+  .handoff {
+    position: relative;
+    margin: 32px 0 32px 88px;
+    text-align: center;
+  }
+  .handoff-inner {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--navy), var(--slate));
+    color: #fff;
+    padding: 20px 36px;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(15,26,46,0.25);
+  }
+  .handoff-inner .arrow {
+    font-size: 1.6rem;
+    display: block;
+    margin-bottom: 6px;
+    opacity: 0.7;
+  }
+  .handoff-inner h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .handoff-inner p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.65);
+  }
+  .handoff::after {
+    content: '';
+    position: absolute;
+    left: -56px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--orange);
+    border: 3px solid var(--navy);
+    z-index: 2;
+  }
+
+  /* ── RESULT CARD ── */
+  .result-card {
+    position: relative;
+    margin: 32px 0 20px 88px;
+    background: linear-gradient(135deg, #f0faf6 0%, #fef9f2 100%);
+    border: 2px solid var(--teal);
+    border-radius: 14px;
+    padding: 28px;
+  }
+  .result-card::after {
+    content: '';
+    position: absolute;
+    left: -56px;
+    top: 32px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--teal);
+    border: 3px solid var(--navy);
+    z-index: 2;
+  }
+  .result-card h4 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 16px;
+  }
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .kpi-item {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .kpi-item .label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .kpi-item .values {
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .kpi-item .before {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--red);
+    text-decoration: line-through;
+    opacity: 0.6;
+  }
+  .kpi-item .arrow-r { color: var(--muted); }
+  .kpi-item .after {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--teal);
+  }
+  .kpi-item .delta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--teal);
+    font-weight: 600;
+    background: #eef8f5;
+    padding: 2px 8px;
+    border-radius: 6px;
+  }
+
+  /* ── BOTTOM NOTE ── */
+  .bottom-note {
+    margin: 48px 0 0 88px;
+    padding: 20px 24px;
+    background: var(--navy);
+    border-radius: 12px;
+    color: rgba(255,255,255,0.75);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  .bottom-note strong { color: #fff; }
+
+  /* ── STEP VARIANTS ── */
+  .step.agent2::after { border-color: var(--orange); }
+  .step.agent2 .step-num { background: var(--orange); }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: #fff; }
+    .header { padding: 30px 20px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .step:hover { transform: none; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+    .step, .handoff-inner, .result-card, .bottom-note, .kpi-item, .analogy {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      break-inside: avoid;
+    }
+    .phase-label { break-after: avoid; }
+    .timeline::before { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .step::after, .phase-label .dot, .handoff::after {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .container { padding-bottom: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="badge">Group 7 Capstone · IDS 560</div>
+  <h1>How Our System Works</h1>
+  <p>The complete process From truck arrival to optimized warehouse, told as a story</p>
+</div>
+
+<div class="container">
+  <div class="timeline">
+
+    <!-- ═══════ PHASE 0: THE PROBLEM ═══════ -->
+    <div class="phase-label">
+      <div class="dot"></div>
+      <h2>The Starting Point</h2>
+      <h3>The Problem We're Solving</h3>
+    </div>
+
+    <div class="step">
+      <span class="step-num">REALITY TODAY</span>
+      <h4>Warehouses Operate Blind</h4>
+      <p class="desc">
+        Every day, 20 to 35 trucks arrive at a warehouse with 8 dock doors. Some show up early, some an hour late, some don't come at all. When multiple trucks arrive at once, they wait in the yard, burning money. Meanwhile inside, tasks pile up unevenly: one zone has 50 tasks and workers are overwhelmed, another has 5 and workers are idle. Nobody sees the full picture in real time.
+      </p>
+      <div class="analogy">Think of an airport with no air traffic control. Planes land whenever they want, some gates are packed, others empty. Chaos.</div>
+    </div>
+
+    <!-- ═══════ PHASE 1: DATA ═══════ -->
+    <div class="phase-label">
+      <div class="dot"></div>
+      <h2>Foundation</h2>
+      <h3>Step 1: The Data</h3>
+    </div>
+
+    <div class="step">
+      <span class="step-num">DATA LAYER</span>
+      <h4>6 Months of Warehouse Operations</h4>
+      <p class="desc">
+        The system reads historical warehouse data: 3,500 dock appointments, 16,000 task records, carrier performance profiles, exception logs, and wave plans. We built synthetic data with real operational patterns baked in. Some carriers are chronically late, mornings have congestion peaks, certain zones get overloaded.
+      </p>
+      <div class="analogy">Like a flight simulator with real turbulence patterns. We train on realistic conditions so when real data arrives, we're ready.</div>
+      <span class="metric">Data-agnostic: swap CSVs when real data arrives, zero code changes</span>
+    </div>
+
+    <!-- ═══════ PHASE 2: AGENT 1 ═══════ -->
+    <div class="phase-label">
+      <div class="dot"></div>
+      <h2>Phase 1</h2>
+      <h3>Agent 1: Dock Scheduling</h3>
+    </div>
+
+    <div class="step">
+      <span class="step-num">STEP 1 of 6</span>
+      <h4>Load Today's Dock Schedule</h4>
+      <p class="desc">
+        Agent 1 pulls every appointment for the day: which carrier, what time, which dock door, shipment size, priority level. It sees the full picture of what's supposed to happen today.
+      </p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">STEP 2 of 6</span>
+      <h4>Profile Every Carrier's Track Record</h4>
+      <p class="desc">
+        For each carrier showing up today, the agent checks their historical reliability: on-time rate, average delay when late, no-show rate, typical unload duration. Tags each as <strong>high</strong>, <strong>medium</strong>, or <strong>low</strong> reliability.
+      </p>
+      <div class="analogy">Like checking a restaurant's reviews before booking. "SwiftHaul: 91% on-time, great." "DiscountFreight: 42% on-time, chronically late." Now you know who to watch.</div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">STEP 3 of 6</span>
+      <h4>Predict When Trucks Will Actually Arrive</h4>
+      <p class="desc">
+        Using carrier profiles, the agent predicts real arrival times. Not the schedule, but what will actually happen. Formula: <strong>Predicted Arrival = Scheduled Time + (Avg Delay × Late Probability)</strong>. A carrier scheduled for 9 AM that's late 55% of the time with a 40-min average delay? Predicted arrival: 9:22 AM.
+      </p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">STEP 4 of 6</span>
+      <h4>Detect Congestion Windows</h4>
+      <p class="desc">
+        Divides the day into 1-hour windows. Counts how many trucks will occupy docks in each window. With 8 doors, if 9 trucks need a dock simultaneously, that's a <strong style="color:#d44">CRITICAL</strong> window. Flags every window as Normal, Warning (75%+), or Critical (100%+).
+      </p>
+      <div class="analogy">Like a traffic heat map on Google Maps. Green = flowing. Yellow = slowing. Red = gridlocked. Now you can plan your route.</div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">STEP 5 of 6</span>
+      <h4>Recommend Rescheduling</h4>
+      <p class="desc">
+        Finds unreliable carriers sitting in critical windows and proposes moving them to quieter time slots. Only moves flexible shipments and never touches hot/priority loads. Each recommendation includes the reason and projected impact.
+      </p>
+      <span class="metric">Example: "Move DiscountFreight from 9:00 to 10:30 AM. Reduces 9 AM window from 100% to 88%."</span>
+    </div>
+
+    <div class="step">
+      <span class="step-num">STEP 6 of 6</span>
+      <h4>Show Before / After Impact</h4>
+      <p class="desc">
+        Simulates what happens if the recommendations are followed. Shows the operator a clear comparison: wait times, congestion windows, and dock utilization, before and after.
+      </p>
+      <span class="metric">Result: Carrier wait time 14.7 min down to 7.8 min (-47%)</span>
+    </div>
+
+    <!-- ═══════ HANDOFF ═══════ -->
+    <div class="handoff">
+      <div class="handoff-inner">
+        <span class="arrow">⬇ ⬇ ⬇</span>
+        <h4>Cross-Agent Handoff</h4>
+        <p>Agent 1's congestion predictions flow into Agent 2.<br>"Expect a surge at 9 AM. Zone A will be hit."</p>
+      </div>
+    </div>
+
+    <!-- ═══════ PHASE 3: AGENT 2 ═══════ -->
+    <div class="phase-label">
+      <div class="dot" style="border-color: var(--orange)"></div>
+      <h2>Phase 2</h2>
+      <h3>Agent 2: Task Prioritization</h3>
+    </div>
+
+    <div class="step agent2">
+      <span class="step-num">STEP 1 of 7</span>
+      <h4>Load the Task Queue</h4>
+      <p class="desc">
+        Pulls every pending task across all warehouse zones: unloading, putaway, QC checks, replenishment. Each task has a zone, type, creation time, and SLA deadline. Typical day: 150 to 200 tasks.
+      </p>
+    </div>
+
+    <div class="step agent2">
+      <span class="step-num">STEP 2 of 7</span>
+      <h4>Measure Zone Balance</h4>
+      <p class="desc">
+        Counts tasks per zone and calculates the <strong>Coefficient of Variation (CV)</strong>, a single number measuring how uneven the workload is. CV of 0 = perfectly balanced. CV of 0.84 = severely imbalanced (one zone drowning, another empty).
+      </p>
+      <div class="analogy">Like a restaurant where one waiter has 12 tables and another has 2. The CV tells you how unfair the split is.</div>
+    </div>
+
+    <div class="step agent2">
+      <span class="step-num">STEP 3 of 7</span>
+      <h4>Analyze Dwell Times</h4>
+      <p class="desc">
+        Dwell time = how long a task sits idle before anyone starts working on it. A task created at 8 AM that doesn't start until 9:30 AM has 90 minutes of pure waste. The agent finds every task that's been sitting too long.
+      </p>
+    </div>
+
+    <div class="step agent2">
+      <span class="step-num">STEP 4 of 7</span>
+      <h4>Read Agent 1's Predictions ⚡</h4>
+      <p class="desc">
+        <strong>This is the key moment.</strong> Agent 2 reads Agent 1's congestion forecast. "Dock surge at 9 AM, Zone A will be flooded with new tasks." Agent 2 immediately starts clearing Zone A's current backlog to make room. <strong>Cascade prevention.</strong>
+      </p>
+      <div class="analogy">Airport tower radios the gate manager: "Three planes landing in 10 minutes." The gate manager clears space before the passengers even arrive.</div>
+    </div>
+
+    <div class="step agent2">
+      <span class="step-num">STEP 5 of 7</span>
+      <h4>Score Every Task</h4>
+      <p class="desc">
+        Every task gets a priority score from 0 to 1 using three weighted factors:<br>
+        <strong style="color: var(--navy)">Priority = (SLA Urgency × 40%) + (Dwell Time × 30%) + (Zone Balance × 30%)</strong><br><br>
+        Feeding an order due in 2 hours? High SLA score. Been sitting idle for 90 min? High dwell score. In an overloaded zone? High balance score. The agent ranks all tasks from most to least urgent.
+      </p>
+    </div>
+
+    <div class="step agent2">
+      <span class="step-num">STEP 6 of 7</span>
+      <h4>Isolate Exception Tasks</h4>
+      <p class="desc">
+        Tasks where something went wrong (damaged goods, wrong SKU, missing paperwork) can't be processed normally and block the queue if left mixed in. The agent pulls them into a separate exception queue and routes them to a supervisor. Healthy tasks flow unblocked.
+      </p>
+    </div>
+
+    <div class="step agent2">
+      <span class="step-num">STEP 7 of 7</span>
+      <h4>Show Optimized Queue + Impact</h4>
+      <p class="desc">
+        Presents the reordered task list with scores and reasoning. Compares the current first-in-first-out approach against the optimized ranking. Shows projected improvements across all zones.
+      </p>
+      <span class="metric">Result: Zone balance CV 0.841 down to 0.336 (-60%) | Dwell time -30% | Throughput +12%</span>
+    </div>
+
+    <!-- ═══════ PHASE 4: OUTPUT ═══════ -->
+    <div class="phase-label">
+      <div class="dot" style="border-color: var(--navy); background: var(--teal)"></div>
+      <h2>Phase 3</h2>
+      <h3>Combined Output: The Dashboard</h3>
+    </div>
+
+    <div class="step">
+      <span class="step-num">DASHBOARD</span>
+      <h4>Three-Tab Interactive Dashboard</h4>
+      <p class="desc">
+        <strong>Tab 1, Dock Scheduling:</strong> Congestion heatmap across the day, rescheduling recommendations with reasoning, carrier reliability profiles.<br><br>
+        <strong>Tab 2, Task Prioritization:</strong> Zone workload bars, reprioritized task list with scores, dwell time analysis, exception queue.<br><br>
+        <strong>Tab 3, Impact Summary:</strong> All KPIs with before/after cards and percentage change. One glance tells you the value.
+      </p>
+      <div class="analogy">Like a pilot's cockpit display. Everything you need to make decisions, nothing you don't.</div>
+    </div>
+
+    <!-- ═══════ RESULTS ═══════ -->
+    <div class="result-card">
+      <h4>📊 Projected Impact (Tested on 6 Months of Data)</h4>
+      <div class="kpi-grid">
+        <div class="kpi-item">
+          <div class="label">Carrier Wait Time</div>
+          <div class="values">
+            <span class="before">14.7 min</span>
+            <span class="arrow-r">→</span>
+            <span class="after">7.8 min</span>
+            <span class="delta">-47%</span>
+          </div>
+        </div>
+        <div class="kpi-item">
+          <div class="label">Inbound to Putaway Cycle</div>
+          <div class="values">
+            <span class="before">62.5 min</span>
+            <span class="arrow-r">→</span>
+            <span class="after">38.8 min</span>
+            <span class="delta">-38%</span>
+          </div>
+        </div>
+        <div class="kpi-item">
+          <div class="label">Zone Balance (CV)</div>
+          <div class="values">
+            <span class="before">0.841</span>
+            <span class="arrow-r">→</span>
+            <span class="after">0.336</span>
+            <span class="delta">-60%</span>
+          </div>
+        </div>
+        <div class="kpi-item">
+          <div class="label">Exception Resolution</div>
+          <div class="values">
+            <span class="before">216 min</span>
+            <span class="arrow-r">→</span>
+            <span class="after">86 min</span>
+            <span class="delta">-60%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════ KEY TAKEAWAY ═══════ -->
+    <div class="bottom-note">
+      <strong>⚡ The Key Innovation:</strong> Agent 1 predicts dock congestion, tells Agent 2, and Agent 2 pre-clears the impacted zone BEFORE the surge hits. This <strong>cascade prevention</strong> is why we use two agents instead of one. A single system reacts after the damage. Two coordinated agents prevent it.
+      <br><br>
+      <strong>🔒 Advisory Mode:</strong> Both agents recommend, humans approve. No truck gets moved, no task gets reordered without a human saying yes.
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

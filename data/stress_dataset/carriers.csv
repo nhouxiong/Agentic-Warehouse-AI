@@ -1,0 +1,31 @@
+carrier_id,carrier_name,tier,on_time_rate,avg_delay_mins,delay_std_mins,preferred_dock_type
+CAR-001,Apex Freight,premium,0.948,4.6,2.3,standard
+CAR-002,Blue Ridge Logistics,premium,0.944,12.1,4.6,refrigerated
+CAR-003,Coastal Transit Co,premium,0.902,17.0,4.7,standard
+CAR-004,Delta Haulers,premium,0.918,6.2,3.2,oversized
+CAR-005,Eastern Express,premium,0.962,8.2,2.3,oversized
+CAR-006,Freightliner Prime,premium,0.952,6.5,3.6,standard
+CAR-007,Global Supply Inc,premium,0.964,5.2,2.1,oversized
+CAR-008,Horizon Logistics,standard,0.789,19.7,8.2,refrigerated
+CAR-009,Ironside Shipping,standard,0.698,26.5,7.5,standard
+CAR-010,Juno Carriers,standard,0.685,21.1,10.3,refrigerated
+CAR-011,Keystone Transit,standard,0.779,37.6,19.5,oversized
+CAR-012,Lodestar Freight,standard,0.826,39.9,21.9,standard
+CAR-013,Meridian Movers,standard,0.846,34.6,9.9,oversized
+CAR-014,Northstar Logistics,standard,0.828,28.0,15.5,standard
+CAR-015,Omega Transport,standard,0.757,35.8,14.3,refrigerated
+CAR-016,Pacific Haul,standard,0.735,17.2,9.5,oversized
+CAR-017,Quantum Freight,standard,0.813,21.5,6.1,standard
+CAR-018,Ridgeline Shipping,standard,0.815,19.6,11.0,standard
+CAR-019,Summit Logistics,standard,0.79,19.3,9.9,oversized
+CAR-020,Titan Transport,standard,0.813,15.8,5.5,refrigerated
+CAR-021,UnionLine Co,standard,0.713,20.5,11.1,refrigerated
+CAR-022,Vanguard Carriers,standard,0.721,20.5,5.5,standard
+CAR-023,Western Freight,economy,0.389,90.7,33.7,refrigerated
+CAR-024,Xenith Shipping,economy,0.425,41.4,11.4,refrigerated
+CAR-025,Yukon Haulers,economy,0.428,38.3,15.3,refrigerated
+CAR-026,Zenith Transit,economy,0.416,41.6,11.0,refrigerated
+CAR-027,Atlas Logistics,economy,0.408,82.5,45.3,standard
+CAR-028,Beacon Express,economy,0.627,77.5,21.8,refrigerated
+CAR-029,Crest Transport,economy,0.608,73.7,25.9,refrigerated
+CAR-030,Drift Logistics,economy,0.636,41.5,21.3,standard

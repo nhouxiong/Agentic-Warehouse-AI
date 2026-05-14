@@ -1,0 +1,45 @@
+{
+  "model_name": "task_completion",
+  "model_type": "linear_regression",
+  "features": [
+    "type_encoded",
+    "zone_encoded",
+    "sla_encoded",
+    "duration_mins",
+    "hour",
+    "day_of_week",
+    "queue_position"
+  ],
+  "training_rows": 11347,
+  "test_rows": 2837,
+  "results": {
+    "linear_regression": {
+      "mae": 21.24,
+      "rmse": 24.52,
+      "r2": 0.097
+    },
+    "random_forest": {
+      "mae": 21.32,
+      "rmse": 24.69,
+      "r2": 0.085
+    },
+    "xgboost": {
+      "mae": 21.66,
+      "rmse": 25.27,
+      "r2": 0.041
+    }
+  },
+  "baseline": {
+    "mean": 60.8,
+    "median": 61.0
+  },
+  "feature_importance": {
+    "duration_mins": 1.0243,
+    "sla_encoded": 0.1653,
+    "type_encoded": 0.0665,
+    "day_of_week": 0.0334,
+    "hour": 0.0163,
+    "queue_position": 0.0111,
+    "zone_encoded": 0.0087
+  }
+}

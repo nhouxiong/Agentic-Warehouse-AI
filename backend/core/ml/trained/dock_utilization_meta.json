@@ -1,0 +1,49 @@
+{
+  "model_name": "dock_utilization",
+  "model_type": "linear_regression",
+  "features": [
+    "num_appointments",
+    "avg_pallets",
+    "avg_duration",
+    "avg_carrier_reliability",
+    "pct_economy",
+    "pct_hot",
+    "zone_a_pct",
+    "day_of_week",
+    "week_of_year"
+  ],
+  "training_rows": 105,
+  "test_rows": 27,
+  "results": {
+    "linear_regression": {
+      "mae": 0.67,
+      "rmse": 0.82,
+      "r2": 0.925
+    },
+    "random_forest": {
+      "mae": 0.83,
+      "rmse": 1.04,
+      "r2": 0.88
+    },
+    "xgboost": {
+      "mae": 0.79,
+      "rmse": 0.96,
+      "r2": 0.896
+    }
+  },
+  "baseline": {
+    "mean": 12.8,
+    "median": 12.5
+  },
+  "feature_importance": {
+    "avg_carrier_reliability": 9.5635,
+    "pct_economy": 2.4626,
+    "pct_hot": 0.6685,
+    "num_appointments": 0.5124,
+    "zone_a_pct": 0.418,
+    "avg_duration": 0.2087,
+    "avg_pallets": 0.1358,
+    "day_of_week": 0.0793,
+    "week_of_year": 0.0187
+  }
+}
